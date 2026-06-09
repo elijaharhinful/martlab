@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy: #0B1120;
+  --color-navy-light: #1E293B;
+  --color-gold: #D4AF37;
+  --color-gold-light: #F3E5AB;
+  --color-gold-dark: #B8860B;
+  
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--color-navy);
+    --foreground: #ffffff;
+  }
+  
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)] antialiased selection:bg-[var(--color-gold)] selection:text-[#0B1120];
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .bg-glow {
+    background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.1), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(30, 41, 59, 0.8), transparent 50%),
+                var(--color-navy);
+  }
+  .glass-card {
+    @apply bg-transparent backdrop-blur-sm border border-gold/30 shadow-lg hover:border-gold/60;
+  }
 }

@@ -28,6 +28,6 @@
                 var(--color-navy);
   }
   .glass-card {
-    @apply bg-transparent backdrop-blur-sm border border-gold/30 shadow-lg hover:border-gold/60;
+    @apply bg-transparent backdrop-blur-sm border border-gold/30 shadow-lg hover:border-slate-400;
   }
 }

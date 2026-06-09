@@ -13,7 +13,7 @@ export function Hero() {
           
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.1]">
             Next-Generation <br />
-            <span className="bg-gradient-to-r from-gold via-white to-gold bg-clip-text text-transparent">
+            <span className="text-gold">
               Data Ecosystems
             </span>
           </h1>

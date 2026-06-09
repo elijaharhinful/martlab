@@ -8,7 +8,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export function Button({ variant = 'primary', children, className = '', ...props }: ButtonProps) {
   const baseStyle = "inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer";
   const variants = {
-    primary: "bg-gradient-to-r from-gold to-gold-dark text-navy hover:shadow-[0_4px_20px_rgba(212,175,55,0.4)]",
+    primary: "bg-gold hover:bg-white text-navy font-bold shadow-md hover:shadow-lg",
     secondary: "bg-transparent border border-gold text-gold hover:bg-gold/10"
   };
 

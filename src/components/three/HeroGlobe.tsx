@@ -45,7 +45,11 @@ export function HeroGlobe({ className }: HeroGlobeProps) {
 
   return (
     <div ref={containerRef} className={className} aria-hidden>
-      {active ? <ParticleGlobe className="!absolute inset-0" /> : <GlobeFallback />}
+      {active ? (
+        <ParticleGlobe className="!absolute inset-0 cursor-grab active:cursor-grabbing" />
+      ) : (
+        <GlobeFallback />
+      )}
     </div>
   );
 }

@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
 const GOLD = '#D4AF37';
@@ -14,8 +15,6 @@ type GlobeProps = {
   radius?: number;
   /** Spacing between sampled latitude rows, in degrees (smaller = denser). */
   latStepDeg?: number;
-  /** Whether motion (idle spin + pointer parallax) is enabled. */
-  animated?: boolean;
 };
 
 /**
@@ -88,59 +87,40 @@ function useLandPositions(radius: number, latStepDeg: number) {
   return positions;
 }
 
-function Globe({ radius = 2.1, latStepDeg = 1.6, animated = true }: GlobeProps) {
-  const groupRef = useRef<THREE.Group>(null);
+function Globe({ radius = 2.1, latStepDeg = 1.6 }: GlobeProps) {
   const positions = useLandPositions(radius, latStepDeg);
 
-  useFrame((state, delta) => {
-    const group = groupRef.current;
-    if (!group) return;
-
-    if (animated) {
-      // Continuous slow spin.
-      group.rotation.y += delta * 0.12;
-
-      // Subtle parallax tilt eased toward the pointer.
-      const targetX = state.pointer.y * 0.35;
-      const targetZ = state.pointer.x * 0.12;
-      group.rotation.x += (targetX - group.rotation.x) * 0.05;
-      group.rotation.z += (targetZ - group.rotation.z) * 0.05;
-    }
-  });
-
   return (
-    // Outer group holds the static ~23.5° axial tilt; inner group spins/parallaxes.
+    // Static ~23.5° axial tilt; the camera (OrbitControls) handles rotation.
     <group rotation={[0, 0, 0.41]}>
-      <group ref={groupRef}>
-        {/* Continent particles */}
-        {positions && (
-          <points key={positions.length}>
-            <bufferGeometry>
-              <bufferAttribute attach="attributes-position" args={[positions, 3]} />
-            </bufferGeometry>
-            <pointsMaterial
-              size={0.028}
-              sizeAttenuation
-              color={GOLD}
-              transparent
-              opacity={0.95}
-              depthWrite={false}
-              blending={THREE.AdditiveBlending}
-            />
-          </points>
-        )}
-
-        {/* Faint inner sphere so the globe still reads where there is ocean */}
-        <mesh>
-          <sphereGeometry args={[radius * 0.985, 48, 48]} />
-          <meshBasicMaterial
-            color={GOLD_LIGHT}
+      {/* Continent particles */}
+      {positions && (
+        <points key={positions.length}>
+          <bufferGeometry>
+            <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+          </bufferGeometry>
+          <pointsMaterial
+            size={0.028}
+            sizeAttenuation
+            color={GOLD}
             transparent
-            opacity={0.04}
-            side={THREE.BackSide}
+            opacity={0.95}
+            depthWrite={false}
+            blending={THREE.AdditiveBlending}
           />
-        </mesh>
-      </group>
+        </points>
+      )}
+
+      {/* Faint inner sphere so the globe still reads where there is ocean */}
+      <mesh>
+        <sphereGeometry args={[radius * 0.985, 48, 48]} />
+        <meshBasicMaterial
+          color={GOLD_LIGHT}
+          transparent
+          opacity={0.04}
+          side={THREE.BackSide}
+        />
+      </mesh>
     </group>
   );
 }
@@ -166,7 +146,18 @@ export default function ParticleGlobe({ className }: ParticleGlobeProps) {
       frameloop={prefersReducedMotion ? 'demand' : 'always'}
     >
       <ambientLight intensity={0.6} />
-      <Globe animated={!prefersReducedMotion} />
+      <Globe />
+      <OrbitControls
+        // Click/touch-drag to rotate; keep it a pure "turn the globe" gesture.
+        enableZoom={false}
+        enablePan={false}
+        enableDamping
+        dampingFactor={0.08}
+        rotateSpeed={0.5}
+        // Gentle idle spin that pauses while dragging and resumes on release.
+        autoRotate={!prefersReducedMotion}
+        autoRotateSpeed={0.6}
+      />
     </Canvas>
   );
 }

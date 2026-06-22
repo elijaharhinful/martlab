@@ -4,7 +4,7 @@ import { MapPin, Mail, Phone, Globe } from 'lucide-react';
 
 export default function ContactPage() {
   return (
-    <main className="flex-grow pt-32 pb-24 container mx-auto px-6 flex items-center justify-center min-h-[80vh] bg-glow">
+    <main className="flex-grow pt-32 pb-24 container mx-auto px-6 flex items-center justify-center min-h-[80vh]">
       <Card className="max-w-2xl w-full">
         <h1 className="text-4xl font-bold mb-8 text-center text-white">Contact Us</h1>
         
@@ -38,7 +38,7 @@ export default function ContactPage() {
             <p className="text-slate-300 leading-relaxed mb-6">
               Located in Accra, Ghana, with project experience across Liberia, South Africa, and Botswana and growing operations across Sub-Saharan Africa.
             </p>
-            <a href="#" className="inline-flex items-center gap-2 text-gold hover:text-white transition-colors font-medium text-lg">
+            <a href="https://www.linkedin.com/company/martlab-consult-africa" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-gold hover:text-white transition-colors font-medium text-lg">
               <Globe className="w-5 h-5" />
               LinkedIn: Martlab Consult Africa
             </a>

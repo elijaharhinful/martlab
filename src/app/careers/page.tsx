@@ -52,8 +52,9 @@ export default function CareersPage() {
                     </p>
                   </div>
                   <div className="flex-shrink-0">
-                    <a 
-                      href="#" 
+                    {/* TODO: replace "#" with the Google Form application URL once provided. */}
+                    <a
+                      href="#"
                       className="inline-flex items-center justify-center rounded-full px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-navy transition-all font-semibold whitespace-nowrap"
                     >
                       Apply Now
@@ -69,7 +70,7 @@ export default function CareersPage() {
                 We're always looking for talented individuals. Send us your resume and we'll keep you in mind for future openings.
               </p>
               <a 
-                href="mailto:info@martlabconsult.com" 
+                href="mailto:martlabconsult@gmail.com"
                 className="inline-flex items-center justify-center rounded-full px-8 py-3 bg-white text-navy hover:bg-slate-200 transition-all font-bold"
               >
                 Contact Us

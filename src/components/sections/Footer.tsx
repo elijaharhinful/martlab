@@ -28,7 +28,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Globe className="w-5 h-5 text-gold shrink-0" /> 
-                <a href="#" className="hover:text-gold transition-colors">Martlab Consult Africa</a>
+                <a href="https://www.linkedin.com/company/martlab-consult-africa" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">Martlab Consult Africa</a>
               </li>
             </ul>
           </div>

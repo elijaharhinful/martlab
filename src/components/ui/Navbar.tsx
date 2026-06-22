@@ -24,7 +24,7 @@ export function Navbar() {
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <Image src="/images/logo.jpg" alt="Martlab Consult Logo" width={40} height={40} style={{ width: 'auto', height: 'auto' }} className=" group-hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] transition-all" />
+          <Image src="/images/logo.jpg" alt="Martlab Consult Logo" width={40} height={40} style={{ width: 'auto', height: 'auto' }} />
           <span className="font-bold text-xl text-white tracking-wide">MartLab Consult</span>
         </Link>
         

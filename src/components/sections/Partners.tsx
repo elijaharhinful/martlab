@@ -3,13 +3,16 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-const partners = [
+type Partner = { name: string; logo?: string };
+
+const partners: Partner[] = [
   { name: "Copenhagen Business School", logo: "/images/cbs.png" },
   { name: "EFD", logo: "/images/efd.png" },
   { name: "GRIPS", logo: "/images/gtips.jpg" },
   { name: "UG Climate Change", logo: "/images/ug_climate.jpg" },
   { name: "UG Population Studies", logo: "/images/ug_population.png" },
-  { name: "University of Cambridge – Department of Geography", logo: "/images/cambridge.png" },
+  // No logo file yet — renders as text (drop a file at /images/cambridge.png to show a logo).
+  { name: "University of Cambridge – Department of Geography" },
 ];
 
 export function Partners() {
@@ -24,7 +27,7 @@ export function Partners() {
           {partners.map((partner, i) => (
             <div key={i} className="flex items-center justify-center bg-white/90 hover:bg-white transition-colors rounded-xl p-6 shadow-lg w-48 h-28 hover:-translate-y-1">
               <div className="relative w-full h-full flex items-center justify-center">
-                {failed[i] ? (
+                {!partner.logo || failed[i] ? (
                   <span className="text-slate-900 font-bold text-xs text-center">{partner.name}</span>
                 ) : (
                   <Image

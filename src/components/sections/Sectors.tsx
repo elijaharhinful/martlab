@@ -6,10 +6,12 @@ import Link from 'next/link';
 const sectors = [
   "Agriculture and Food Security",
   "Climate Change and Sustainability",
-  "Education and Workforce Development",
+  "Education",
+  "Workforce Development",
   "Governance and Public Policy",
-  "Health and Social Protection",
-  "Gender and Development"
+  "Health",
+  "Gender, Inclusion and Social Protection",
+  "Market Research and Consumer Intelligence"
 ];
 
 const approach = [

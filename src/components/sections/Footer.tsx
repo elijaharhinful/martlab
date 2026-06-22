@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div>
-            <Image src="/images/logo.jpg" alt="Martlab Consult Logo" width={60} height={60} className="rounded-full mb-6 border-2 border-navy" />
+            <Image src="/images/logo.jpg" alt="Martlab Consult Logo" width={60} height={60} style={{ width: 'auto', height: 'auto' }} className="rounded-full mb-6 border-2 border-navy" />
             <h3 className="text-xl font-bold text-white mb-2">Martlab Consult</h3>
             <p className="text-slate-400 text-sm">Data. Insights. Impact.</p>
             <p className="text-gold mt-4 font-medium italic">"Partner with us to turn your data into insight—and your insight into impact"</p>

@@ -23,7 +23,8 @@ export function Partners() {
                 <Image 
                   src={partner.logo} 
                   alt={partner.name} 
-                  fill 
+                  fill
+                  sizes="192px"
                   className="object-contain" 
                   onError={(e) => {
                     // Fallback to text if image fails to load

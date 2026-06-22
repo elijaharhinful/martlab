@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from '../ui/Card';
 import Link from 'next/link';
-import { Search, Database, BarChart3, LineChart, GraduationCap } from 'lucide-react';
+import { Search, Database, BarChart3, LineChart, GraduationCap, TabletSmartphone } from 'lucide-react';
 
 const services = [
   {
@@ -28,6 +28,11 @@ const services = [
     title: "Capacity Building & Training",
     description: "Equip organizations with practical skills in data analysis, research methods, and digital tools.",
     icon: GraduationCap
+  },
+  {
+    title: "Equipment Rental",
+    description: "Rental of Tablets, recorders and GPS recording devices.",
+    icon: TabletSmartphone
   }
 ];
 

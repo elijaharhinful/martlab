@@ -6,7 +6,7 @@ import Link from 'next/link';
 const team = [
   {
     name: "Martin Mawutor K. Agbodzi",
-    role: "Founder & Lead Consultant",
+    role: "Managing & Lead Consultant",
     bioSummary: "Over seven years of experience delivering multi-sector research, M&E, and data-driven projects across Africa.",
     bio: "Martin Mawutor K. Agbodzi is a research and data analytics professional with over seven years of experience delivering multi-sector research, monitoring and evaluation, and data-driven projects across Africa. He specializes in research design, digital data systems, statistical analysis, and large-scale field operations management. He has led and supported over 30 research and data projects across sectors, including health, education, governance, climate, and economic development, working with international organizations, universities, and development partners. Martin holds an MA in Population Studies from the University of Ghana and a BSc in Statistics and Computer Science, with strong technical expertise in tools such as Stata, SPSS, CSPro, KoboToolbox, SurveyCTO, Excel, and Power BI.",
     image: "/images/martin.jpg"

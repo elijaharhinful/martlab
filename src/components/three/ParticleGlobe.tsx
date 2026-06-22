@@ -1,14 +1,45 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, Line } from '@react-three/drei';
 import * as THREE from 'three';
 
 const GOLD = '#D4AF37';
 const GOLD_LIGHT = '#F3E5AB';
 const MAP_SRC = '/earth-equirect.jpg';
 const DEG2RAD = Math.PI / 180;
+
+/** Where the company is based — arcs originate here. */
+const ORIGIN: [number, number] = [7.95, -1.03]; // Ghana
+
+/** Cities the network reaches, as [lat, lon]. */
+const DESTINATIONS: [number, number][] = [
+  [51.51, -0.13], // London
+  [40.71, -74.01], // New York
+  [43.65, -79.38], // Toronto
+  [-23.55, -46.63], // São Paulo
+  [25.2, 55.27], // Dubai
+  [1.35, 103.82], // Singapore
+  [31.23, 121.47], // Shanghai
+  [28.61, 77.21], // New Delhi
+  [-26.2, 28.04], // Johannesburg
+  [-1.29, 36.82], // Nairobi
+  [-33.87, 151.21], // Sydney
+  [55.75, 37.62], // Moscow
+];
+
+/** Convert geographic lat/lon to a point on the globe (matches the dot sampler). */
+function latLonToVec3(lat: number, lon: number, radius: number) {
+  const latR = lat * DEG2RAD;
+  const lonR = lon * DEG2RAD;
+  const cosLat = Math.cos(latR);
+  return new THREE.Vector3(
+    radius * cosLat * Math.cos(lonR),
+    radius * Math.sin(latR),
+    -radius * cosLat * Math.sin(lonR)
+  );
+}
 
 type GlobeProps = {
   /** Sphere radius in world units. */
@@ -87,6 +118,90 @@ function useLandPositions(radius: number, latStepDeg: number) {
   return positions;
 }
 
+/**
+ * Great-circle-style arcs from the origin (Ghana) out to each destination,
+ * each bowing above the surface, with a glowing pulse travelling along it to
+ * suggest live network/service flow.
+ */
+function NetworkArcs({ radius }: { radius: number }) {
+  const origin = useMemo(() => latLonToVec3(ORIGIN[0], ORIGIN[1], radius), [radius]);
+
+  const arcs = useMemo(() => {
+    return DESTINATIONS.map(([lat, lon], i) => {
+      const end = latLonToVec3(lat, lon, radius);
+      const dist = origin.distanceTo(end);
+      // Lift the control point outward along the chord's midpoint direction;
+      // longer arcs bow higher.
+      const mid = origin
+        .clone()
+        .add(end)
+        .multiplyScalar(0.5)
+        .normalize()
+        .multiplyScalar(radius * (1 + dist * 0.18));
+      const curve = new THREE.QuadraticBezierCurve3(origin.clone(), mid, end);
+      return {
+        curve,
+        points: curve.getPoints(64),
+        end,
+        phase: i / DESTINATIONS.length, // stagger the pulses
+      };
+    });
+  }, [origin, radius]);
+
+  const pulses = useRef<(THREE.Mesh | null)[]>([]);
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    for (let i = 0; i < arcs.length; i++) {
+      const mesh = pulses.current[i];
+      if (!mesh) continue;
+      const u = (t * 0.16 + arcs[i].phase) % 1;
+      arcs[i].curve.getPointAt(u, mesh.position);
+      // Fade/shrink the pulse at the arc's ends.
+      const s = Math.sin(u * Math.PI);
+      mesh.scale.setScalar(0.35 + s * 1.1);
+    }
+  });
+
+  return (
+    <group>
+      {/* Origin marker (Ghana) */}
+      <mesh position={origin}>
+        <sphereGeometry args={[0.055, 16, 16]} />
+        <meshBasicMaterial color={GOLD_LIGHT} />
+      </mesh>
+
+      {arcs.map((arc, i) => (
+        <group key={i}>
+          <Line
+            points={arc.points}
+            color={GOLD}
+            lineWidth={1}
+            transparent
+            opacity={0.4}
+          />
+          {/* Destination marker */}
+          <mesh position={arc.end}>
+            <sphereGeometry args={[0.025, 10, 10]} />
+            <meshBasicMaterial color={GOLD} />
+          </mesh>
+          {/* Travelling pulse */}
+          <mesh ref={(el) => { pulses.current[i] = el; }}>
+            <sphereGeometry args={[0.03, 8, 8]} />
+            <meshBasicMaterial
+              color={GOLD_LIGHT}
+              transparent
+              opacity={0.95}
+              blending={THREE.AdditiveBlending}
+              depthWrite={false}
+            />
+          </mesh>
+        </group>
+      ))}
+    </group>
+  );
+}
+
 function Globe({ radius = 2.1, latStepDeg = 1.6 }: GlobeProps) {
   const positions = useLandPositions(radius, latStepDeg);
 
@@ -121,6 +236,9 @@ function Globe({ radius = 2.1, latStepDeg = 1.6 }: GlobeProps) {
           side={THREE.BackSide}
         />
       </mesh>
+
+      {/* Network reach from Ghana */}
+      <NetworkArcs radius={radius} />
     </group>
   );
 }

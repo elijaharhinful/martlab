@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from 'react';
 const stats = [
   { label: "Research Projects", value: "20", suffix: "+", desc: "across Africa" },
   { label: "Field Personnel", value: "100", suffix: "+", desc: "trained & deployed" },
-  { label: "Data Quality", value: "99", suffix: "%", desc: "accuracy rate" },
+  { label: "Field Enumerators", value: "80", suffix: "+", desc: "managed in field teams" },
   { label: "Years Experience", value: "7", suffix: "+", desc: "in multi-sector data" },
 ];
 
@@ -19,7 +19,13 @@ function AnimatedNumber({ value, suffix }: { value: string, suffix: string }) {
       setCount(0);
       return;
     }
-    
+
+    // Respect reduced-motion: show the final number without counting up.
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+      setCount(target);
+      return;
+    }
+
     let startTime: number | null = null;
     const duration = 2000; // 2 seconds
     let animationFrameId: number;
@@ -82,7 +88,7 @@ export function Impacts() {
             <div key={i} className="glass-card rounded-2xl p-8 flex flex-col items-center justify-center text-center group">
               <AnimatedNumber value={stat.value} suffix={stat.suffix} />
               <div className="text-sm text-slate-300 font-medium mb-1">{stat.label}</div>
-              <div className="text-xs text-slate-500">{stat.desc}</div>
+              <div className="text-xs text-slate-400">{stat.desc}</div>
             </div>
           ))}
         </div>

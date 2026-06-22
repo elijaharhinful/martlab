@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
+import { Button } from '../ui/Button';
 import Link from 'next/link';
 
 const projects = [
@@ -106,12 +107,13 @@ const projects = [
 
 export function Portfolio({ isSummary = false }: { isSummary?: boolean }) {
   const displayedProjects = isSummary ? projects.slice(0, 5) : projects;
+  const Heading = isSummary ? 'h2' : 'h1';
 
   return (
     <section className="py-24 bg-navy-light/30 border-t border-white/5 relative z-10" id="portfolio">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Project Portfolio</h2>
+          <Heading className="text-3xl md:text-5xl font-bold mb-6">Project Portfolio</Heading>
           <div className="max-w-4xl mx-auto text-slate-400 space-y-4 text-lg leading-relaxed">
             <p>
               With a proven track record of <strong className="text-white">20+ national and multi-country research projects</strong> across Africa, our consortium of experts supports leading organizations in designing and implementing rigorous studies. We deliver high-quality, data-driven insights across sectors like health, education, climate, and governance to inform policy and practice.
@@ -120,7 +122,7 @@ export function Portfolio({ isSummary = false }: { isSummary?: boolean }) {
         </div>
 
         {isSummary ? (
-          <Card className="max-w-5xl mx-auto p-0 overflow-hidden border-white/5">
+          <Card interactive={false} className="max-w-5xl mx-auto p-0 overflow-hidden border-white/5">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
@@ -159,7 +161,7 @@ export function Portfolio({ isSummary = false }: { isSummary?: boolean }) {
                 <p className="text-gold text-sm font-medium mb-4">{proj.client}</p>
                 <p className="text-slate-300 mb-6 flex-grow">{proj.description}</p>
                 <div className="mt-auto pt-4 border-t border-white/10">
-                  <h4 className="text-xs text-slate-500 uppercase tracking-wider mb-3 font-semibold">Project Scope</h4>
+                  <h4 className="text-xs text-slate-400 uppercase tracking-wider mb-3 font-semibold">Project Scope</h4>
                   <div className="flex flex-wrap gap-2">
                     {proj.scope.map((item, i) => (
                       <span key={i} className="text-xs bg-navy px-2 py-1 rounded text-slate-400 border border-white/5 shadow-sm">
@@ -175,9 +177,7 @@ export function Portfolio({ isSummary = false }: { isSummary?: boolean }) {
 
         {isSummary && (
           <div className="mt-12 text-center">
-            <Link href="/portfolio" className="inline-flex items-center justify-center rounded-full px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-navy transition-all font-semibold">
-              View All Projects
-            </Link>
+            <Button href="/portfolio" variant="secondary" className="px-8">View All Projects</Button>
           </div>
         )}
       </div>

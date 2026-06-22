@@ -19,6 +19,11 @@
   body {
     @apply bg-[var(--background)] text-[var(--foreground)] antialiased selection:bg-[var(--color-gold)] selection:text-[#0B1120];
   }
+
+  /* Consistent, visible keyboard focus for interactive elements. */
+  a, button, [role="button"], input, select, textarea, summary {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-navy)];
+  }
 }
 
 @layer utilities {
@@ -28,6 +33,6 @@
                 var(--color-navy);
   }
   .glass-card {
-    @apply bg-transparent backdrop-blur-sm border border-gold/30 shadow-lg hover:border-slate-400;
+    @apply bg-transparent backdrop-blur-sm border border-gold/30 shadow-lg;
   }
 }

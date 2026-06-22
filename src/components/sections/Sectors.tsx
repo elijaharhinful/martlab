@@ -28,7 +28,7 @@ export function Sectors({ isSummary = false }: { isSummary?: boolean }) {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Sector Expertise</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">Our Sector Expertise</h2>
             <p className="text-slate-400 mb-8 leading-relaxed text-lg">
               We work across key development and economic sectors to provide integrated, high-quality research and advisory services.
             </p>

@@ -41,7 +41,7 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="pt-8 border-t border-white/10 text-center text-slate-500 text-sm">
+        <div className="pt-8 border-t border-white/10 text-center text-slate-400 text-sm">
           <p>&copy; {new Date().getFullYear()} Martlab Consult. All rights reserved.</p>
         </div>
       </div>

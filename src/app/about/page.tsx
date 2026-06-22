@@ -3,7 +3,7 @@ import { CheckCircle2 } from 'lucide-react';
 
 export default function AboutPage() {
   return (
-    <main className="flex-grow pt-16 pb-24 container mx-auto px-6 bg-glow min-h-screen">
+    <main className="flex-grow pt-24 pb-24 container mx-auto px-6 min-h-screen">
       <h1 className="text-4xl md:text-6xl font-bold mb-12 text-white text-center">Who We Are</h1>
       <div className="max-w-4xl mx-auto space-y-8 text-slate-300 text-lg leading-relaxed">
         <div className="glass-card rounded-2xl p-8 mb-12">

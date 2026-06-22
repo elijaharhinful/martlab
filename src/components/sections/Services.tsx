@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from '../ui/Card';
+import { Button } from '../ui/Button';
 import Link from 'next/link';
 import { Search, Database, BarChart3, LineChart, GraduationCap, TabletSmartphone } from 'lucide-react';
 
@@ -38,12 +39,13 @@ const services = [
 
 export function Services({ isSummary = false }: { isSummary?: boolean }) {
   const displayedServices = isSummary ? services.slice(0, 3) : services;
+  const Heading = isSummary ? 'h2' : 'h1';
 
   return (
     <section className="py-24 relative z-10" id="services">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">What We Do</h2>
+          <Heading className="text-3xl md:text-5xl font-bold mb-4">What We Do</Heading>
           <p className="text-slate-400 max-w-2xl mx-auto">End-to-end research and data solutions</p>
         </div>
         
@@ -70,9 +72,7 @@ export function Services({ isSummary = false }: { isSummary?: boolean }) {
 
         {isSummary && (
           <div className="mt-12 text-center">
-            <Link href="/services" className="inline-flex items-center justify-center rounded-full px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-navy transition-all font-semibold">
-              View All Services
-            </Link>
+            <Button href="/services" variant="secondary" className="px-8">View All Services</Button>
           </div>
         )}
       </div>

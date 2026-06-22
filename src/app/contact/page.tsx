@@ -4,9 +4,9 @@ import { MapPin, Mail, Phone, Globe } from 'lucide-react';
 
 export default function ContactPage() {
   return (
-    <main className="flex-grow pt-32 pb-24 container mx-auto px-6 flex items-center justify-center min-h-[80vh]">
-      <Card className="max-w-2xl w-full">
-        <h1 className="text-4xl font-bold mb-8 text-center text-white">Contact Us</h1>
+    <main className="flex-grow pt-24 pb-24 container mx-auto px-6 flex items-center justify-center min-h-[80vh]">
+      <Card interactive={false} className="max-w-2xl w-full">
+        <h1 className="text-4xl md:text-6xl font-bold mb-8 text-center text-white">Contact Us</h1>
         
         <div className="space-y-8">
           <div>

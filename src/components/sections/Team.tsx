@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from '../ui/Card';
+import { Button } from '../ui/Button';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -43,12 +44,13 @@ const team = [
 
 export function Team({ isSummary = false }: { isSummary?: boolean }) {
   const displayedTeam = isSummary ? team.slice(0, 3) : team;
+  const Heading = isSummary ? 'h2' : 'h1';
 
   return (
     <section className="py-24 relative z-10" id="team">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">Our Consortium Experts</h2>
+          <Heading className="text-3xl md:text-5xl font-bold mb-4">Our Consortium Experts</Heading>
           <p className="text-slate-400 max-w-2xl mx-auto">A network of experienced professionals from diverse fields.</p>
         </div>
         
@@ -101,9 +103,7 @@ export function Team({ isSummary = false }: { isSummary?: boolean }) {
 
         {isSummary && (
           <div className="mt-12 text-center">
-            <Link href="/team" className="inline-flex items-center justify-center rounded-full px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-navy transition-all font-semibold">
-              Meet All Experts
-            </Link>
+            <Button href="/team" variant="secondary" className="px-8">Meet All Experts</Button>
           </div>
         )}
       </div>

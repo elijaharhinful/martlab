@@ -32,13 +32,6 @@ const team = [
     bioSummary: "Detail-oriented logistics professional with over five years of experience in administrative coordination.",
     bio: "Stella Oduro is a detail-oriented logistics and operations professional with over five years of experience in administrative coordination, financial transactions, and client service. She brings strong organizational and problem-solving skills, with a proven ability to manage processes efficiently and support operational delivery. Her background includes experience in banking, forex administration, and customer-facing roles, where she developed expertise in financial controls, recordkeeping, and service coordination. She has demonstrated the ability to manage multiple tasks, maintain accuracy, and ensure smooth day-to-day operations. At Martlab Consult, Stella oversees logistics and operational coordination, supporting field activities, managing vendors, and ensuring efficient execution of research projects. She also supports budget tracking and administrative processes to enhance overall project delivery.",
     image: "/images/stella.jpg"
-  },
-  {
-    name: "Winfred Korsi Korletey",
-    role: "Field Coordinator & M&E Associate",
-    bioSummary: "M&E professional with strong experience in field research and survey coordination across development projects.",
-    bio: "Winfred Korsi Korletey is a monitoring and evaluation professional with strong experience in field research, data collection, and survey coordination across development projects. He has worked on national and multi-country studies with organizations such as UNICEF, USAID, and academic institutions, supporting high-quality data collection and ensuring adherence to research protocols. He is skilled in digital data collection tools (CSPro, KoboCollect, and SurveyCTO) and data analysis using Stata, SQL, and Excel, with a strong focus on data quality assurance and field operations management. Winfred holds a BSc in Statistics with Mathematics (KNUST) and is currently pursuing an MSc in Planning, Monitoring, and Evaluation, with additional training from the ALX Data Science Program.",
-    image: "/images/winfred.jpg"
   }
 ];
 

@@ -11,6 +11,7 @@ const partners: Partner[] = [
   { name: "GRIPS", logo: "/images/gtips.jpg" },
   { name: "UG Climate Change", logo: "/images/ug_climate.jpg" },
   { name: "UG Population Studies", logo: "/images/ug_population.png" },
+  { name: "PASGR", logo: "/images/pasgr-logo.jpg" },
   // No logo file yet — renders as text (drop a file at /images/cambridge.png to show a logo).
   { name: "University of Cambridge – Department of Geography" },
 ];
@@ -22,7 +23,7 @@ export function Partners() {
   return (
     <section className="py-12 border-y border-white/5 bg-navy-light/20">
       <div className="container mx-auto px-6">
-        <p className="text-center text-slate-400 text-sm font-medium mb-8 tracking-widest uppercase">Our partners and collaborators</p>
+        <p className="text-center text-slate-400 text-sm font-medium mb-8 tracking-widest uppercase">Our Clients</p>
         <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 transition-all duration-500">
           {partners.map((partner, i) => (
             <div key={i} className="flex items-center justify-center bg-white/90 hover:bg-white transition-colors rounded-xl p-6 shadow-lg w-48 h-28 hover:-translate-y-1">

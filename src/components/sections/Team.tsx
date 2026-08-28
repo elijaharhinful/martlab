@@ -51,7 +51,7 @@ export function Team({ isSummary = false }: { isSummary?: boolean }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {displayedTeam.map((member, index) => (
               <Card key={index} className="flex flex-col items-center text-center group h-full">
-                <div className="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-navy-light/50 group-hover:border-gold/30 transition-colors shadow-[0_0_20px_rgba(212,175,55,0.05)] group-hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] flex-shrink-0">
+                <div className="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-navy-light/50 group-hover:border-gold/30 transition-colors shadow-[0_0_20px_rgba(212,175,55,0.05)] group-hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] shrink-0">
                   {member.image ? (
                     <Image src={member.image} alt={member.name} width={128} height={128} className="object-cover w-full h-full" />
                   ) : (
@@ -62,7 +62,7 @@ export function Team({ isSummary = false }: { isSummary?: boolean }) {
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-1">{member.name}</h3>
                 <p className="text-gold font-medium text-sm mb-4">{member.role}</p>
-                <p className="text-slate-400 text-sm flex-grow mb-4">{member.bioSummary}</p>
+                <p className="text-slate-400 text-sm grow mb-4">{member.bioSummary}</p>
                 <Link href="/team" className="text-gold hover:text-white transition-colors text-sm font-semibold inline-flex items-center gap-1 mt-auto">
                   Read full bio <span aria-hidden="true">&rarr;</span>
                 </Link>
@@ -73,7 +73,7 @@ export function Team({ isSummary = false }: { isSummary?: boolean }) {
           <div className="flex flex-col gap-8 max-w-4xl mx-auto">
             {team.map((member, index) => (
               <Card key={index} className="flex flex-col md:flex-row items-center md:items-start gap-8 group">
-                <div className="flex-shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-navy-light/50 group-hover:border-gold/30 transition-colors shadow-[0_0_20px_rgba(212,175,55,0.05)]">
+                <div className="shrink-0 w-48 h-48 rounded-2xl overflow-hidden border-2 border-navy-light/50 group-hover:border-gold/30 transition-colors shadow-[0_0_20px_rgba(212,175,55,0.05)]">
                   {member.image ? (
                     <Image src={member.image} alt={member.name} width={192} height={192} className="object-cover w-full h-full" />
                   ) : (

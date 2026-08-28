@@ -16,7 +16,9 @@
     "next": "16.2.7",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "three": "^0.182.0"
+    "react-photo-album": "^3.6.1",
+    "three": "^0.182.0",
+    "yet-another-react-lightbox": "^3.32.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
